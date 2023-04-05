@@ -5,12 +5,18 @@
             <td>Name:</td>
             <td>
                 <input type="text" size="30" formControlName="userName">
+                <div *ngIf="isControlInvalid('userName')">
+                    Please enter at least a 3 character name.
+                </div>
             </td>
         </tr>
         <tr>
             <td>Rating:</td>
             <td>
                 <input type="number" size="30" formControlName="rating">
+                <div *ngIf="isControlInvalid('rating')">
+                    Please enter a rating between 1 to 5.
+                </div>
             </td>
         </tr>
         <tr>
@@ -18,9 +24,11 @@
             <td></td>
         </tr>
         <tr>
-            <td></td>
-            <td>
+            <td colspan="2">
                 <textarea formControlName="commentText"></textarea>
+                <div *ngIf="isControlInvalid('commentText')">
+                    Please kindly leave a comment.
+                </div>
             </td>
         </tr>
         <tr>

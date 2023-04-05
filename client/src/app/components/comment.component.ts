@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieService } from '../services/movie.service';
@@ -51,9 +51,14 @@ export class CommentComponent implements OnInit, OnDestroy{
   private createForm(): FormGroup {
     return this.formBuilder.group({
       userName: this.formBuilder.control<string>('', [ Validators.minLength(3) ]),
-      rating: this.formBuilder.control<number>(0),
+      rating: this.formBuilder.control<number>(5, [ Validators.min(1), Validators.max(5)]),
       commentText: this.formBuilder.control<string>('', [ Validators.required ])
     })
+  }
+
+  isControlInvalid(ctrlName: string): boolean {
+    const ctrl = this.form.get(ctrlName) as FormControl
+    return ctrl.invalid && (!ctrl.pristine)
   }
   
 

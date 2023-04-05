@@ -1,11 +1,21 @@
-<h2>Search Result</h2>
+<table>
+  <tr>
+    <td>
+      <h2>Search Result</h2>
+    </td>
+    <td>
+      <button type="button" [routerLink]="['/']">Back</button>
+    </td>
+  </tr>
+</table>
+
 <div>
     <table>
       <tr *ngFor="let movie of movieArray">
         <td>
           <img [src]="movie.image!= 'no image found' ? movie.image : replacementPicture">
         </td>
-        <td>
+        <td class="info">
             <h3>{{ movie.title }} (Rated: {{ movie.rating }})</h3>
             <h4>{{ movie.headline }}</h4>
             <p>{{ movie.summary }}</p>
