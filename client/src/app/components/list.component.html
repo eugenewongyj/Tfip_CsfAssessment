@@ -10,6 +10,7 @@
             <h4>{{ movie.headline }}</h4>
             <p>{{ movie.summary }}</p>
             <p>Comments: {{ movie.commentCount }}</p>
+            <button type="button" [routerLink]="['/movie', movie.title, 'comment']">Comment</button>
         </td>
       </tr>
     </table>

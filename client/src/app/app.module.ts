@@ -7,12 +7,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './components/search.component';
 import { ListComponent } from './components/list.component';
+import { CommentComponent } from './components/comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    ListComponent
+    ListComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

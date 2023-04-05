@@ -34,7 +34,7 @@ public class MovieService {
 		// https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=&api-key=
 		String apiUrl = UriComponentsBuilder
 							.fromUriString(NYTIMES_MOVIE_SEARCH_API)
-							.queryParam("query", query)
+							.queryParam("query", query.replaceAll(" ", "+"))
 							.queryParam("api-key", apiKey)
 							.toUriString();
 
