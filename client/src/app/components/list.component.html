@@ -1,0 +1,18 @@
+<h2>Search Result</h2>
+<div>
+    <table>
+      <tr *ngFor="let movie of movieArray">
+        <td>
+          <img src="{{ movie.image }}" alt="/assets/placeholder.jpg">
+        </td>
+        <td>
+            <h3>{{ movie.title }} (Rated: {{ movie.rating }})</h3>
+            <h4>{{ movie.headline }}</h4>
+            <p>{{ movie.summary }}</p>
+            <p>Comments: {{ movie.commentCount }}</p>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+

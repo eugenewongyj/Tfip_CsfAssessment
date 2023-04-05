@@ -4,6 +4,9 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.List;
 
+import org.bson.Document;
+
+import ibf2022.batch1.csf.assessment.server.models.Comment;
 import ibf2022.batch1.csf.assessment.server.models.Review;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
@@ -57,13 +60,15 @@ public class Utils {
         } else {
             review.setImage("no image found");
         }
-        
         return review;
     }
 
     public static JsonArray reviewListToJsonArray(List<Review> reviewList) {
-        // JsonArrayBuilder
-        return null;
+        JsonArrayBuilder jsonArrayBuilder = Json.createArrayBuilder();
+        reviewList.stream()
+                .map(Utils::reviewToJsonObject)
+                .forEach(jsonArrayBuilder::add);
+        return jsonArrayBuilder.build();
     }
 
     public static JsonObject reviewToJsonObject(Review review) {
@@ -75,8 +80,27 @@ public class Utils {
                 .add("summary", review.getSummary())
                 .add("reviewURL", review.getReviewURL())
                 .add("image", review.getImage())
+                .add("commentCount", review.getCommentCount())
                 .build();
 
+    }
+
+    public static Comment jsonObjectToComment(JsonObject jsonObject) {
+        Comment comment = new Comment();
+        comment.setTitle(jsonObject.getString("title"));
+        comment.setUserName(jsonObject.getString("userName"));
+        comment.setRating(jsonObject.getInt("rating"));
+        comment.setCommentText(jsonObject.getString("commentText"));
+        return comment;
+    }
+
+    public static Document commentToDocument(Comment comment) {
+        Document document = new Document();
+        document.put("title", comment.getTitle());
+        document.put("userName", comment.getUserName());
+        document.put("rating", comment.getRating());
+        document.put("commentText", comment.getCommentText());
+        return document;
     }
 
    
