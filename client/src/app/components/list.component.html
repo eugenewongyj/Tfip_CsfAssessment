@@ -3,7 +3,7 @@
     <table>
       <tr *ngFor="let movie of movieArray">
         <td>
-          <img src="{{ movie.image }}" alt="./assets/placeholder.jpg">
+          <img [src]="movie.image!= 'no image found' ? movie.image : replacementPicture">
         </td>
         <td>
             <h3>{{ movie.title }} (Rated: {{ movie.rating }})</h3>

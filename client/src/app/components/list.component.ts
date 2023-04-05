@@ -13,6 +13,7 @@ export class ListComponent implements OnInit, OnDestroy {
 
   queryParam$!: Subscription
   movieArray: Movie[] = []
+  replacementPicture: string = "/assets/placeholder.jpg"
 
   constructor(private activatedRoute: ActivatedRoute, private movieService: MovieService) {}
 
