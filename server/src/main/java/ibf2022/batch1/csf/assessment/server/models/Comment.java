@@ -42,6 +42,14 @@ public class Comment {
         this.commentText = commentText;
     }
 
+    @Override
+    public String toString() {
+        return "Comment [title=" + title + ", userName=" + userName + ", rating=" + rating + ", commentText="
+                + commentText + "]";
+    }
+
+    
+
     
     
 }

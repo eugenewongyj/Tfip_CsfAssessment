@@ -26,11 +26,10 @@ export class ListComponent implements OnInit, OnDestroy {
             this.movieArray = result
           }
         )
-
       }
     )
-    
   }
+  
   ngOnDestroy(): void {
     this.queryParam$.unsubscribe()
   }

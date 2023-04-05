@@ -16,6 +16,8 @@ public class MovieRepository {
 	@Autowired
 	private MongoTemplate mongoTemplate;
 
+	public static String COLLECTION_COMMENTS = "comments";
+
 	// TODO: Task 5
 	// You may modify the parameter but not the return type
 	// Write the native mongo database query in the comment below
@@ -37,14 +39,17 @@ public class MovieRepository {
 	// Write the native mongo database query in the comment below
 	/* 
 	db.comments.insert({
-		title: "The Black Godfather",
-		userName: "Eugene"
-		rating: 5,
-		commentText: "Very good"
+    title: "The Black Godfather",
+    userName: "Eugene",
+    rating: 5,
+    commentText: "Very good"
 	})
 	*/
 	public void saveComment(Comment comment) {
+		System.out.println("In repo: " + comment);
 		Document documentComment = Utils.commentToDocument(comment);
-		documentComment = mongoTemplate.insert(documentComment, "comments");
+		System.out.println("In repo: " + documentComment.toString());
+		mongoTemplate.insert(documentComment, COLLECTION_COMMENTS);
+		System.out.println("After saving");
 	}
 }

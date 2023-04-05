@@ -8,6 +8,8 @@ import { lastValueFrom } from 'rxjs';
 })
 export class MovieService {
 
+  savedSearch: string = ''
+
   private GET_MOVIES_API: string = "/api/search";
 
   private POST_COMMENT_API: string = "/api/comment";
@@ -15,6 +17,7 @@ export class MovieService {
   constructor(private httpClient: HttpClient) { }
 
   getMovies(movieName: string): Promise<Movie[]> {
+    this.savedSearch = movieName
     const params = new HttpParams()
                 .set("query", movieName)
 
@@ -22,16 +25,16 @@ export class MovieService {
         .get<Movie[]>(this.GET_MOVIES_API, {params: params}));
   }
 
-  postComment(title: string, form: any): void {
+  postComment(title: string, form: any): Promise<any> {
     const comment = new HttpParams()
-      .set('title', "The Black Godfather")
-      .set('userName', "123")
-      .set('rating', 5)
-      .set('commentText', "123")
+      .set('title', title)
+      .set('userName',form['userName'])
+      .set('rating', form['rating'])
+      .set('commentText', form['commentText'])
 
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
 
-    this.httpClient.post<any>(this.POST_COMMENT_API, comment.toString(), { headers: headers })
-    console.log('posted!')
+    return lastValueFrom(this.httpClient.post<any>(this.POST_COMMENT_API, comment.toString(), { headers: headers }))
+    
   }
 }

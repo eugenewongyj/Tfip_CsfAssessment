@@ -35,7 +35,16 @@ export class CommentComponent implements OnInit, OnDestroy{
     const comment = this.form.value
     this.movieService.postComment(this.title, comment)
     console.log('passed to service')
-    const queryParams: Params = { movieName: this.title };
+    // Return to previous search
+    const savedSearch: string = this.movieService.savedSearch
+    const queryParams: Params = { movieName: savedSearch };
+    this.router.navigate(['/movie'], {queryParams : queryParams})
+  }
+
+  back(): void {
+    // Return to previous search
+    const savedSearch: string = this.movieService.savedSearch
+    const queryParams: Params = { movieName: savedSearch };
     this.router.navigate(['/movie'], {queryParams : queryParams})
   }
 

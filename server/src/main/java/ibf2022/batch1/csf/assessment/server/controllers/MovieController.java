@@ -42,7 +42,7 @@ public class MovieController {
 	public ResponseEntity<String> postComment(Comment comment) {
 		// JsonObject jsonObject = Utils.jsonStringToJsonObject(payload);
 		// Comment comment = Utils.jsonObjectToComment(jsonObject);
-		System.out.println("In controller");
+		System.out.println("In controller: " + comment);
 		String title = movieService.saveComment(comment);
 		JsonObject response = Json.createObjectBuilder()
                                 .add("title", title)
